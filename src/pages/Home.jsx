@@ -19,6 +19,7 @@ const Home = (props) =>{
     </div>
   </div>
 
+    <a href = "/tours"><Button>Все туры</Button></a>
   <Row>
   <Col
     m={4}
@@ -26,7 +27,7 @@ const Home = (props) =>{
   >
     <Card
       actions={[
-        <a key="1" href="/tours">Просмотреть туры</a>
+        <a key="1" href="/tours/Egypt">Просмотреть туры</a>
       ]}
       closeIcon={<Icon>close</Icon>}
       header={<CardTitle image={`${process.env.PUBLIC_URL}/images/egypt.webp`}>Египет</CardTitle>}
@@ -42,7 +43,7 @@ const Home = (props) =>{
   >
     <Card
       actions={[
-        <a key="1" href="/tours">Просмотреть туры</a>
+        <a key="1" href="/tours/Turkey">Просмотреть туры</a>
       ]}
       closeIcon={<Icon>close</Icon>}
       header={<CardTitle image={`${process.env.PUBLIC_URL}/images/turkey.webp`}>Турция</CardTitle>}
@@ -58,7 +59,7 @@ const Home = (props) =>{
   >
     <Card
       actions={[
-        <a key="1" href="/tours">Просмотреть туры </a>
+        <a key="1" href="/tours/Georgia">Просмотреть туры </a>
       ]}
       closeIcon={<Icon>close</Icon>}
       header={<CardTitle image={`${process.env.PUBLIC_URL}/images/georgia.jpg`}>Грузия</CardTitle>}

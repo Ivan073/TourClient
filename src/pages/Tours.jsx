@@ -1,32 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, NavItem, Icon, Table, Col, ProgressBar } from 'react-materialize';
+import { useParams } from 'react-router-dom';
 import 'materialize-css';
 import http from '../http';
 import moment from 'moment';
 
 const Tours = () => {
-
+    const { selected_country } = useParams();
     const [tours,setTours] = useState([])
+    const [loaded,setLoaded] = useState(false)
 
     useEffect(()=>{
         http.get('/tours').then(response => {
             if(response.data != ''){
+              if(selected_country!=null){
+                response.data = response.data.filter(tour => tour.COUNTRY == selected_country)
+              }
               setTours(response.data)
+              setLoaded(true)
             }
           })
     },[])
 
   return (
     <div>
-        {tours.length == 0 &&
+        {!loaded &&
         <Col s={12}>
             <ProgressBar />
         </Col>
       }
-        {tours.length > 0 &&
+      {loaded && tours.length==0 && 
+        <h2>  На данный момент туры в выбранной стране отсутствуют</h2>
+      }
+        {loaded && tours.length>0&&
         <Table>
   <thead>
     <tr>
+      <th data-field="image">
+        
+      </th>
       <th data-field="name">
         Название
       </th>
@@ -44,6 +56,9 @@ const Tours = () => {
   <tbody>
     {tours.map(tour => (
       <tr>
+        <td>
+          <img src= {"http://localhost:8080/tours/images/"+tour.ID} alt='Изображение не загружено' style={{maxHeight: '100px', maxWidth: '100px'}}/>
+        </td>
         <td>
           {tour.NAME}
         </td>

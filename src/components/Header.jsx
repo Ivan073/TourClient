@@ -7,7 +7,7 @@ const Header = () => {
     <div>
     <Navbar
   alignLinks="right"
-  brand={<a className="brand-logo" href="#">
+  brand={<a className="brand-logo" href="/">
     <img src={`${process.env.PUBLIC_URL}/logo.png`} style={{ maxWidth: '65px', maxHeight: '65px' }}/>
     </a>}
   id="mobile-nav"
