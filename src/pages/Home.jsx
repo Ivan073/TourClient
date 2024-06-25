@@ -1,6 +1,23 @@
 import {Button, Icon, Parallax, Row, Col, Card, CardTitle} from 'react-materialize'
+import http from '../http';
+import {useEffect} from 'react';
 
 const Home = (props) =>{
+
+  useEffect(()=>{
+    const formData = new FormData();
+    formData.append('username', 'user');
+    formData.append('password', 'password');
+
+
+    http.post('/login', formData).then(response => {
+      console.log(response.data)
+    }).catch(error => {
+      console.log(error)
+    })
+},[])
+
+
     return <>
     <Parallax
     image={<img alt="" src="http://materializecss.com/images/parallax1.jpg"/>}

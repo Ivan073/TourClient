@@ -12,6 +12,7 @@ const Tours = () => {
 
     useEffect(()=>{
         http.get('/tours').then(response => {
+            console.log(response.data)
             if(response.data != ''){
               if(selected_country!=null){
                 response.data = response.data.filter(tour => tour.COUNTRY == selected_country)
@@ -54,7 +55,7 @@ const Tours = () => {
     </tr>
   </thead>
   <tbody>
-    {tours.map(tour => (
+    {console.log(tours) && tours.map(tour => (
       <tr>
         <td>
           <img src= {"http://localhost:8080/tours/images/"+tour.ID} alt='Изображение не загружено' style={{maxHeight: '100px', maxWidth: '100px'}}/>
