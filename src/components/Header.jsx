@@ -54,7 +54,7 @@ const Header = () => {
     {!weatherError && !weatherData && "Погода загружается..."}
     {!weatherError && weatherData && "Погода: "+weatherData.fact.temp +"°C, "+ "ощущается как "+weatherData.fact.feels_like +"°C"}
   </NavItem>
-  <NavItem href="http://localhost:8080/login">
+  <NavItem href="login">
     Войти
   </NavItem>
 </Navbar>

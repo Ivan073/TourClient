@@ -6,12 +6,32 @@ import http from '../http';
 import moment from 'moment';
 
 const Tours = () => {
+  function getToken() {
+    /*const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith('token=')) {
+        return cookie.substring('token='.length, cookie.length);
+      }
+    }*
+    return null;*/
+    return localStorage.getItem('jwt');
+  }
+
+
     const { selected_country } = useParams();
     const [tours,setTours] = useState([])
     const [loaded,setLoaded] = useState(false)
+    const [accessToken, setAccessToken] = useState(getToken())
 
     useEffect(()=>{
-        http.get('/tours').then(response => {
+        console.log('jwt:'+accessToken);
+        console.log(document.cookie);
+        http.get('/tours', {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        }).then(response => {
             console.log(response.data)
             if(response.data != ''){
               if(selected_country!=null){
@@ -55,7 +75,7 @@ const Tours = () => {
     </tr>
   </thead>
   <tbody>
-    {console.log(tours) && tours.map(tour => (
+    {tours.map(tour => (
       <tr>
         <td>
           <img src= {"http://localhost:8080/tours/images/"+tour.ID} alt='Изображение не загружено' style={{maxHeight: '100px', maxWidth: '100px'}}/>
